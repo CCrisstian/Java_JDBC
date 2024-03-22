@@ -15,7 +15,7 @@ public class Ejemplo_JDBC {
             Statement statement = connection.createStatement();
             /*Poder ejecutar acciones en la base de datos*/
             ResultSet resultSet = statement.executeQuery("SELECT * FROM productos");
-            /*Obtiene la Base de Datos*/
+            /*Obtiene de la Base de Datos la planilla 'productos'*/
 
             while (resultSet.next()){
                 System.out.println(resultSet.getString("nombre"));
