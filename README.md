@@ -58,3 +58,31 @@ Algunas características clave de `JDBC`:
  -  <b>Manejo de Excepciones</b>: `JDBC` proporciona manejo de excepciones para errores relacionados con la conexión a la base de datos, la ejecución de consultas y la manipulación de resultados, lo que garantiza una gestión adecuada de posibles errores.
  -  <b>Independencia de la Base de Datos</b>: `JDBC` permite a los desarrolladores escribir código Java independiente de la base de datos subyacente, lo que facilita la portabilidad de las aplicaciones entre diferentes sistemas de gestión de bases de datos (DBMS) sin necesidad de realizar cambios significativos en el código.
  -  <b>Soporte para Diversos Tipos de Bases de Datos</b>: JD`JDBC`BC es compatible con una amplia gama de bases de datos relacionales, incluyendo MySQL, PostgreSQL, Oracle, SQL Server, SQLite, entre otros.
+
+<h2 align="center">'DriverManager'</h2>
+<p>La clase <b>DriverManager</b> es parte de la API JDBC (Java Database Connectivity) y se utiliza para administrar un conjunto de controladores de bases de datos. Su principal función es facilitar la conexión de una aplicación Java con una base de datos mediante la carga y gestión de los controladores JDBC necesarios.</p>
+
+Métodos más importantes de la clase `DriverManager`:
+-  `registerDriver(Driver driver)`: Registra un controlador de bases de datos con el `DriverManager`. Este método es generalmente utilizado internamente por los controladores JDBC durante su inicialización, por lo que rara vez se llama explícitamente.
+-  `getConnection(String url)`: Establece una conexión a la base de datos utilizando la URL de conexión proporcionada. Esta es la forma más básica de obtener una conexión y generalmente se utiliza cuando no se necesitan propiedades adicionales de conexión.
+-  `getConnection(String url, Properties info)`: Establece una conexión a la base de datos utilizando la URL de conexión y las propiedades adicionales proporcionadas. Las propiedades pueden incluir el nombre de usuario, la contraseña y otras opciones específicas del controlador.
+-  `getConnection(String url, String user, String password)`: Establece una conexión a la base de datos utilizando la URL de conexión, el nombre de usuario y la contraseña proporcionados.
+-  `getDrivers()`: Devuelve un Enumeration que contiene los controladores de bases de datos registrados con el `DriverManager`.
+-  `deregisterDriver(Driver driver)`: Cancela el registro de un controlador de bases de datos con el `DriverManager`.
+
+<h2 align="center">'Connection'</h2>
+<p>La clase <b>Connection</b> es parte de la API JDBC (Java Database Connectivity) y representa una conexión activa a una base de datos. Es responsable de establecer y mantener la comunicación entre una aplicación Java y una base de datos subyacente.</p>
+
+Métodos más importantes de la clase `Connection`:
+-  `createStatement()`: Crea un objeto `Statement` que se puede utilizar para enviar consultas SQL simples a la base de datos.
+-  `prepareStatement(String sql)`: Crea un objeto `PreparedStatement` que se utiliza para enviar consultas SQL precompiladas a la base de datos. Este método es preferible cuando se necesitan realizar consultas parametrizadas.
+-  `prepareCall(String sql)`: Crea un objeto `CallableStatement` que se utiliza para ejecutar procedimientos almacenados o funciones definidos en la base de datos.
+-  `close()`: Cierra la conexión con la base de datos. Es importante cerrar la conexión una vez que ya no se necesite para liberar los recursos y evitar posibles fugas de memoria.
+-  `commit()`: Confirma la transacción actual. Los cambios realizados en la base de datos dentro de la transacción se vuelven permanentes.
+-  `rollback()`: Deshace la transacción actual y revierte los cambios realizados en la base de datos dentro de la transacción.
+-  `setAutoCommit(boolean autoCommit)`: Establece si la conexión debe realizar automáticamente la confirmación después de cada operación o si debe administrarse manualmente mediante las llamadas explícitas a `commit()` o `rollback()`.
+-  `setTransactionIsolation(int level)`: Establece el nivel de aislamiento de la transacción. Esto determina el grado en que las transacciones concurrentes pueden afectar a otras transacciones en la base de datos.
+-  `getMetaData()`: Devuelve un objeto `DatabaseMetaData` que contiene información sobre la base de datos a la que está conectada la conexión.
+-  `setReadOnly(boolean readOnly)`: Establece si la conexión debe ser de solo lectura o si se permite realizar modificaciones en la base de datos.
+-  `isClosed()`: Devuelve `true` si la conexión está cerrada y `false` si está abierta.
+-  `isValid(int timeout)`: Verifica si la conexión sigue siendo válida. Esto puede ser útil para evitar conexiones inactivas o muertas
