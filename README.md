@@ -48,7 +48,7 @@ Algunas características clave de `MySQL`:
 
 <h1 align="center">JDBC</h1>
 <p><b>JDBC (Java Database Connectivity)</b> es una API (Interfaz de Programación de Aplicaciones) de Java que proporciona un conjunto de clases e interfaces para permitir que las aplicaciones Java se conecten y manipulen bases de datos relacionales.</p>
-<p align="center"><img width="700" alt="image" src="https://github.com/CCrisstian/Java_Bases_de_Datos_SQL/assets/111469216/8d6e5aae-fd7b-4e6d-94dc-fe858334b174"></p>
+<p align="center"><img width="700" alt="image" src="https://github.com/CCrisstian/Java_JDBC/assets/111469216/b6c876dc-18ba-41c2-8678-461e9577ebef"></p>
 
 Algunas características clave de `JDBC`:
  -  <b>Conexión a la Base de Datos</b>: `JDBC` proporciona clases para establecer una conexión con una base de datos, como `DriverManager` y `Connection`, permitiendo que las aplicaciones Java interactúen con la base de datos.
