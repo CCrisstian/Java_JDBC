@@ -10,6 +10,32 @@ Algunos de los conceptos y características clave de `SQL`:
 -  <b>Transacciones</b>: `SQL` proporciona soporte para transacciones, que son secuencias de operaciones que se ejecutan como una sola unidad lógica. Esto garantiza la integridad y consistencia de los datos al realizar operaciones complejas que afectan múltiples registros.
 -  <b>Seguridad</b>: `SQL` incluye mecanismos para gestionar la seguridad de la base de datos, como la definición de usuarios y roles, así como la asignación de permisos para acceder y manipular datos.
 
+<h3>Consulta SQL</h3>
+<p>Una consulta SQL es una instrucción utilizada para recuperar datos de una base de datos. Estas consultas pueden ser muy simples o bastante complejas, dependiendo de las necesidades del usuario. Las consultas SQL se componen principalmente de tres tipos de instrucciones:</p>
+
+-  `SELECT`: Se utiliza para recuperar datos de una o más tablas de la base de datos. Puede seleccionar todas las columnas de una tabla o columnas específicas, filtrar filas según ciertos criterios, ordenar los resultados y más. Por ejemplo:
+```sql
+SELECT * FROM employees;
+```
+Esta consulta selecciona todas las columnas de la tabla `employees`.
+-  `INSERT`: Se utiliza para insertar nuevos registros en una tabla de la base de datos. Puede especificar los valores que se insertarán en cada columna. Por ejemplo:
+```sql
+INSERT INTO employees (first_name, last_name, age) VALUES ('John', 'Doe', 30);
+```
+Esta consulta inserta un nuevo registro en la tabla `employees` con los valores proporcionados.
+-  `UPDATE`: Se utiliza para actualizar registros existentes en una tabla de la base de datos. Puede modificar los valores de una o más columnas en función de ciertos criterios de selección. Por ejemplo:
+```sql
+UPDATE employees SET age = 31 WHERE first_name = 'John';
+```
+Esta consulta actualiza el valor de la columna `age` en la tabla `employees` para aquellos registros cuyo `first_name` sea 'John'.
+-  `DELETE`: Se utiliza para eliminar registros de una tabla de la base de datos. Puede especificar ciertos criterios de selección para eliminar solo los registros deseados. Por ejemplo:
+```sql
+DELETE FROM employees WHERE age > 65;
+```
+Esta consulta elimina todos los registros de la tabla `employees` donde el valor de la columna `age` sea mayor que 65.
+
+<p>Además de estas instrucciones básicas, SQL también incluye otras características más avanzadas, como funciones de <b>agregación (SUM, AVG, COUNT, etc.)</b>, operaciones de <b>unión (JOIN)</b>, cláusulas de <b>filtrado (WHERE)</b>, cláusulas de <b>agrupamiento (GROUP BY)</b>, cláusulas de <b>ordenamiento (ORDER BY)</b>, entre otras.</p>
+
 <h2 align="center">'Lenguaje de Definicion de Datos' y 'Lenguaje de Manipulacion de Datos'</h2>
 <h3>Lenguaje de Definición de Datos (DDL)</h3>
 
