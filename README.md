@@ -86,3 +86,30 @@ Métodos más importantes de la clase `Connection`:
 -  `setReadOnly(boolean readOnly)`: Establece si la conexión debe ser de solo lectura o si se permite realizar modificaciones en la base de datos.
 -  `isClosed()`: Devuelve `true` si la conexión está cerrada y `false` si está abierta.
 -  `isValid(int timeout)`: Verifica si la conexión sigue siendo válida. Esto puede ser útil para evitar conexiones inactivas o muertas
+
+<h2 align="center">'Statement'</h2>
+<p>La clase <b>Statement</b> es parte de la API JDBC (Java Database Connectivity) y se utiliza para enviar instrucciones SQL a una base de datos. Es una interfaz que representa una declaración estática que se ejecuta en una conexión a la base de datos y puede contener consultas de inserción, actualización, eliminación o selección.</p>
+
+Métodos más importantes de la clase `Statement`:
+-  `executeQuery(String sql)`: Ejecuta una consulta SQL que devuelve un conjunto de resultados en forma de objeto `ResultSet`. Se utiliza para consultas de selección que recuperan datos de la base de datos.
+-  `executeUpdate(String sql)`: Ejecuta una instrucción SQL que realiza una acción en la base de datos, como insertar, actualizar o eliminar registros. Devuelve el número de filas afectadas por la operación.
+-  `execute(String sql)`: Ejecuta una instrucción SQL que puede ser una consulta de selección, una instrucción de modificación o cualquier otra instrucción SQL. Devuelve true si el primer resultado es un objeto `ResultSet` (una consulta) y `false` si es un recuento de filas afectadas o no hay resultados.
+-  `close()`: Cierra el `Statement` y libera los recursos asociados.
+-  `getResultSet()`: Devuelve el objeto `ResultSet` que contiene los resultados de la última consulta, si hubo alguna.
+-  `getConnection()`: Devuelve la conexión a la base de datos a la que está asociado este `Statement`.
+-  `addBatch(String sql)`: Agrega una instrucción SQL al lote actual. Las declaraciones en el lote se pueden ejecutar juntas como una sola unidad, lo que puede mejorar el rendimiento de las operaciones en lotes.
+-  `clearBatch()`: Borra todas las declaraciones agregadas al lote actual.
+-  `executeBatch()`: Ejecuta todas las declaraciones en el lote actual como una sola unidad y devuelve un arreglo de enteros que contiene el número de filas afectadas por cada declaración.
+
+<h2 align="center">'ResultSet'</h2>
+<p>La clase <b>ResultSet</b> es parte de la API JDBC (Java Database Connectivity) y se utiliza para representar un conjunto de resultados obtenidos después de ejecutar una consulta SQL en una base de datos. Esta clase proporciona métodos para navegar por los datos recuperados y acceder a los valores de cada fila del resultado.</p>
+
+Métodos más importantes de la clase `ResultSet`:
+-  `next()`: Mueve el cursor del resultado a la siguiente fila. Devuelve `true` si hay más filas disponibles y `false` si no hay más filas.
+-  `getInt(int columnIndex)` / `getString(int columnIndex)` / `getXXX(int columnIndex)`: Devuelve el valor de la columna especificada en la fila actual, donde XXX puede ser un tipo de dato como `Int`, `String`, `Double`, etc. El índice de columna comienza desde 1.
+-  `getInt(String columnName)` / `getString(String columnName)` / `getXXX(String columnName)`: Devuelve el valor de la columna especificada por su nombre en la fila actual.
+-  `close()`: Cierra el `ResultSet` y libera los recursos asociados.
+-  `beforeFirst()`, `afterLast()`, `first()`, `last()`, `absolute(int row)`, `relative(int rows)`: Métodos para mover el cursor del resultado a una fila específica. Estos métodos son útiles para navegar por el conjunto de resultados de manera eficiente.
+-  `getMetaData()`: Devuelve un objeto `ResultSetMetaData` que proporciona metadatos sobre las columnas del conjunto de resultados, como el nombre de la columna, el tipo de datos, la precisión, etc.
+-  `wasNull()`: Devuelve `true` si el valor recuperado por el método `getXXX()` anterior era `NULL`.
+-  `getType()`, `getConcurrency()`, `getHoldability()`: Métodos para obtener información sobre el tipo de resultado, la concurrencia y la retención de resultados.
