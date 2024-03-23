@@ -83,7 +83,7 @@ Algunas características clave de `JDBC`:
  -  <b>Control de Transacciones</b>: `JDBC` permite a las aplicaciones Java administrar transacciones mediante la utilización de objetos como `Connection` y métodos como `commit()` y `rollback()`.
  -  <b>Manejo de Excepciones</b>: `JDBC` proporciona manejo de excepciones para errores relacionados con la conexión a la base de datos, la ejecución de consultas y la manipulación de resultados, lo que garantiza una gestión adecuada de posibles errores.
  -  <b>Independencia de la Base de Datos</b>: `JDBC` permite a los desarrolladores escribir código Java independiente de la base de datos subyacente, lo que facilita la portabilidad de las aplicaciones entre diferentes sistemas de gestión de bases de datos (DBMS) sin necesidad de realizar cambios significativos en el código.
- -  <b>Soporte para Diversos Tipos de Bases de Datos</b>: JD`JDBC`BC es compatible con una amplia gama de bases de datos relacionales, incluyendo MySQL, PostgreSQL, Oracle, SQL Server, SQLite, entre otros.
+ -  <b>Soporte para Diversos Tipos de Bases de Datos</b>: `JDBC` es compatible con una amplia gama de bases de datos relacionales, incluyendo MySQL, PostgreSQL, Oracle, SQL Server, SQLite, entre otros.
 
 <h2 align="center">'DriverManager'</h2>
 <p>La clase <b>DriverManager</b> es parte de la API JDBC (Java Database Connectivity) y se utiliza para administrar un conjunto de controladores de bases de datos. Su principal función es facilitar la conexión de una aplicación Java con una base de datos mediante la carga y gestión de los controladores JDBC necesarios.</p>
