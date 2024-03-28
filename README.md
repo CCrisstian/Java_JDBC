@@ -154,3 +154,15 @@ Beneficios del patrón `DAO`:
 -    <b>Separación de Responsabilidades</b>: Permite separar la lógica de negocio de la lógica de acceso a datos, lo que facilita la reutilización y el mantenimiento del código.
 -    <b>Abstracción de la Fuente de Datos</b>: Oculta los detalles de implementación específicos de la fuente de datos, lo que permite cambiar la fuente de datos sin afectar el resto de la aplicación.
 -    <b>Facilita las Pruebas Unitarias</b>: Al proporcionar una interfaz clara y bien definida, el código que utiliza un `DAO` se puede probar fácilmente utilizando objetos simulados o mock.
+
+
+<h2 align="center">CRUD</h2>
+<p><b>CRUD</b> es un acrónimo que representa las cuatro operaciones básicas en la manipulación de datos en bases de datos relacionales y otros sistemas de almacenamiento de datos.</p>
+
+ Las cuatro operaciones `CRUD` son:
+-    `Create` (Crear): Esta operación se refiere a la creación de nuevos registros o entradas en una base de datos. En SQL, esto se logra mediante la sentencia `INSERT INTO`, que permite agregar nuevos datos a una tabla existente.
+-    `Read` (Leer): Esta operación implica la recuperación de datos existentes de una base de datos. En SQL, esto se realiza utilizando la sentencia `SELECT`, que permite seleccionar y recuperar datos de una o más tablas.
+-    `Update` (Actualizar): Esta operación implica la modificación de datos existentes en una base de datos. En SQL, esto se logra mediante la sentencia `UPDATE`, que permite modificar los valores de una o más columnas en registros existentes en una tabla.
+-    `Delete` (Eliminar): Esta operación implica la eliminación de datos existentes de una base de datos. En SQL, esto se realiza utilizando la sentencia `DELETE FROM`, que permite eliminar registros de una tabla según ciertos criterios especificados.
+
+<p>Juntas, estas cuatro operaciones forman la base de la funcionalidad de gestión de datos en sistemas de bases de datos relacionales y no relacionales. Son esenciales para la creación, lectura, actualización y eliminación de datos en cualquier aplicación que interactúe con una base de datos.</p>
