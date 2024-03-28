@@ -139,3 +139,30 @@ Métodos más importantes de la clase `ResultSet`:
 -  `getMetaData()`: Devuelve un objeto `ResultSetMetaData` que proporciona metadatos sobre las columnas del conjunto de resultados, como el nombre de la columna, el tipo de datos, la precisión, etc.
 -  `wasNull()`: Devuelve `true` si el valor recuperado por el método `getXXX()` anterior era `NULL`.
 -  `getType()`, `getConcurrency()`, `getHoldability()`: Métodos para obtener información sobre el tipo de resultado, la concurrencia y la retención de resultados.
+
+<h2 align="center">DAO (Data Access Object)</h2>
+<p>El patrón <b>DAO (Data Access Object)</b> es un patrón de diseño utilizado en el desarrollo de software para separar la lógica de acceso a datos de la lógica de negocio en una aplicación. El objetivo principal del patrón DAO es abstraer y encapsular la forma en que los datos se acceden y manipulan en una base de datos o cualquier otro origen de datos.</p>
+<p>En esencia, un DAO actúa como una capa intermedia entre la aplicación y la base de datos, proporcionando una interfaz de alto nivel para realizar operaciones <b>CRUD (Crear, Leer, Actualizar, Eliminar)</b> en los datos, sin exponer los detalles de implementación subyacentes al resto de la aplicación.</p>
+
+Algunos conceptos clave asociados con el patrón `DAO`:
+-    <b>Interfaz</b> `DAO`: Define los métodos que representan las operaciones básicas de acceso a datos, como insertar, recuperar, actualizar y eliminar datos. Esta interfaz oculta los detalles de implementación específicos de la fuente de datos.
+-    <b>Implementación</b> `DAO`: Proporciona la implementación concreta de la interfaz `DAO` para un determinado tipo de fuente de datos, como una base de datos relacional, un servicio web, un archivo plano, etc.
+-    <b>Clases de Entidades</b>: Representan las entidades o modelos de datos que se almacenan en la fuente de datos. Estas clases suelen ser objetos simples de Java con propiedades que corresponden a las columnas de la tabla en una base de datos relacional.
+-    <b>Conexión a la Base de Datos</b>: En algunos casos, el `DAO` se encarga de establecer y administrar la conexión a la base de datos. Sin embargo, en entornos modernos, es común utilizar herramientas de gestión de conexiones, como pools de conexiones, para gestionar las conexiones de manera eficiente.
+
+Beneficios del patrón `DAO`:
+-    <b>Separación de Responsabilidades</b>: Permite separar la lógica de negocio de la lógica de acceso a datos, lo que facilita la reutilización y el mantenimiento del código.
+-    <b>Abstracción de la Fuente de Datos</b>: Oculta los detalles de implementación específicos de la fuente de datos, lo que permite cambiar la fuente de datos sin afectar el resto de la aplicación.
+-    <b>Facilita las Pruebas Unitarias</b>: Al proporcionar una interfaz clara y bien definida, el código que utiliza un `DAO` se puede probar fácilmente utilizando objetos simulados o mock.
+
+
+<h2 align="center">CRUD</h2>
+<p><b>CRUD</b> es un acrónimo que representa las cuatro operaciones básicas en la manipulación de datos en bases de datos relacionales y otros sistemas de almacenamiento de datos.</p>
+
+ Las cuatro operaciones `CRUD` son:
+-    `Create` (Crear): Esta operación se refiere a la creación de nuevos registros o entradas en una base de datos. En SQL, esto se logra mediante la sentencia `INSERT INTO`, que permite agregar nuevos datos a una tabla existente.
+-    `Read` (Leer): Esta operación implica la recuperación de datos existentes de una base de datos. En SQL, esto se realiza utilizando la sentencia `SELECT`, que permite seleccionar y recuperar datos de una o más tablas.
+-    `Update` (Actualizar): Esta operación implica la modificación de datos existentes en una base de datos. En SQL, esto se logra mediante la sentencia `UPDATE`, que permite modificar los valores de una o más columnas en registros existentes en una tabla.
+-    `Delete` (Eliminar): Esta operación implica la eliminación de datos existentes de una base de datos. En SQL, esto se realiza utilizando la sentencia `DELETE FROM`, que permite eliminar registros de una tabla según ciertos criterios especificados.
+
+<p>Juntas, estas cuatro operaciones forman la base de la funcionalidad de gestión de datos en sistemas de bases de datos relacionales y no relacionales. Son esenciales para la creación, lectura, actualización y eliminación de datos en cualquier aplicación que interactúe con una base de datos.</p>
