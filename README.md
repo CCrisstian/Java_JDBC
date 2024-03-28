@@ -140,7 +140,7 @@ Métodos más importantes de la clase `ResultSet`:
 -  `wasNull()`: Devuelve `true` si el valor recuperado por el método `getXXX()` anterior era `NULL`.
 -  `getType()`, `getConcurrency()`, `getHoldability()`: Métodos para obtener información sobre el tipo de resultado, la concurrencia y la retención de resultados.
 
-<h1>DAO (Data Access Object)</h1>
+<h2 align="center">DAO (Data Access Object)</h2>
 <p>El patrón <b>DAO (Data Access Object)</b> es un patrón de diseño utilizado en el desarrollo de software para separar la lógica de acceso a datos de la lógica de negocio en una aplicación. El objetivo principal del patrón DAO es abstraer y encapsular la forma en que los datos se acceden y manipulan en una base de datos o cualquier otro origen de datos.</p>
 <p>En esencia, un DAO actúa como una capa intermedia entre la aplicación y la base de datos, proporcionando una interfaz de alto nivel para realizar operaciones <b>CRUD (Crear, Leer, Actualizar, Eliminar)</b> en los datos, sin exponer los detalles de implementación subyacentes al resto de la aplicación.</p>
 
