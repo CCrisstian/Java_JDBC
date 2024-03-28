@@ -1,28 +1,33 @@
 package org.CCristian.Java.JDBC;
 
+import org.CCristian.Java.JDBC.Models.Producto;
+import org.CCristian.Java.JDBC.Repositorio.ProductoRepositorio_Implementacion;
+import org.CCristian.Java.JDBC.Repositorio.Repositorio;
 import org.CCristian.Java.JDBC.Util.Conexion_BaseDeDatos_SINGLETON;
 
 import java.sql.*;
+import java.util.Date;
 
 public class Ejemplo_JDBC {
     public static void main(String[] args) {
 
-        try (Connection connection = Conexion_BaseDeDatos_SINGLETON.getInstance();
-        /*Conectarse a la base de datos*/
-             Statement statement = connection.createStatement();
-        /*Poder ejecutar acciones en la base de datos*/
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM productos")
-        /*Obtiene de la Base de Datos la planilla 'productos'*/)
+        try (Connection connection = Conexion_BaseDeDatos_SINGLETON.getInstance())
         {
-            System.out.println("----------------------------------------------");
-            System.out.println("id\t|\tnombre\t|\tprecio\t|\tfecha_registro");
-            System.out.println("----------------------------------------------");
-            while (resultSet.next()){
-                System.out.print(resultSet.getInt("id") + "\t|\t");
-                System.out.print(resultSet.getString("nombre") + "\t|\t");
-                System.out.print(resultSet.getInt("precio") + "\t|\t");
-                System.out.println(resultSet.getString("fecha_registro"));
-            }
+            Repositorio<Producto> repositorio = new ProductoRepositorio_Implementacion();
+            System.out.println("Listando");
+            repositorio.listar().forEach(System.out::println);
+
+            System.out.println("\nBuscando por 'id'");
+            System.out.println(repositorio.buscarPorId(1L).toString());
+
+            System.out.println("\nInsertar nuevo producto");
+            Producto producto = new Producto();
+            producto.setNombre("Teclado mecánico");
+            producto.setPrecio(500);
+            producto.setFecha_registro(new Date());
+            repositorio.guardar(producto);
+            System.out.println("Guardado");
+            repositorio.listar().forEach(System.out::println);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
