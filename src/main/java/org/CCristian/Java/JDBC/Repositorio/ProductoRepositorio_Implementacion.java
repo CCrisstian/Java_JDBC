@@ -1,5 +1,6 @@
 package org.CCristian.Java.JDBC.Repositorio;
 
+import org.CCristian.Java.JDBC.Models.Categoria;
 import org.CCristian.Java.JDBC.Models.Producto;
 import org.CCristian.Java.JDBC.Util.Conexion_BaseDeDatos_SINGLETON;
 
@@ -19,14 +20,16 @@ public class ProductoRepositorio_Implementacion implements Repositorio<Producto>
         List<Producto> productos = new ArrayList<>();
 
         try (Statement statement = getConnection().createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM productos"))
+             ResultSet resultSet = statement
+                     .executeQuery("SELECT p.*, c.nombre as categoria FROM productos as p "
+                             +"inner join categorias as c ON (p.categoria_id = c.id)"))
         {
             while (resultSet.next()){
                 Producto producto = crearProducto(resultSet);
                 productos.add(producto);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return productos;
     }
@@ -35,8 +38,9 @@ public class ProductoRepositorio_Implementacion implements Repositorio<Producto>
     public Producto buscarPorId(Long id) {
         Producto producto = null;
         try(PreparedStatement preparedSt = getConnection().
-                prepareStatement("SELECT * FROM productos WHERE id = ?")
-        ) {
+                prepareStatement("SELECT p.*, c.nombre as categoria FROM productos as p "
+                        +"inner join categorias as c ON (p.categoria_id = c.id) WHERE p.id = ?"))
+        {
             preparedSt.setLong(1, id);
             try (ResultSet resultSet = preparedSt.executeQuery()) {
                 if (resultSet.next()) {
@@ -44,7 +48,7 @@ public class ProductoRepositorio_Implementacion implements Repositorio<Producto>
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return producto;
     }
@@ -53,22 +57,23 @@ public class ProductoRepositorio_Implementacion implements Repositorio<Producto>
     public void guardar(Producto producto) {
         String sql;  /*Plantilla*/
         if (producto.getId() != null && producto.getId()>0) {
-            sql = "UPDATE productos SET nombre=?, precio=? WHERE id=?";
+            sql = "UPDATE productos SET nombre=?, precio=?, categoria_id=? WHERE id=?";
         } else {
-            sql = "INSERT INTO productos(nombre, precio, fecha_registro) VALUES(?,?,?)";
+            sql = "INSERT INTO productos(nombre, precio, categoria_id, fecha_registro) VALUES(?,?,?,?)";
         }
         try (PreparedStatement preparedSt = getConnection().prepareStatement(sql)){
             preparedSt.setString(1, producto.getNombre());
             preparedSt.setLong(2, producto.getPrecio());
+            preparedSt.setLong(3, producto.getCategoria().getId());
 
             if (producto.getId() != null && producto.getId() > 0) { /*UPDATE*/
-                preparedSt.setLong(3, producto.getId());
+                preparedSt.setLong(4, producto.getId());
             } else {    /*INSERT*/
-                preparedSt.setDate(3, new Date(producto.getFecha_registro().getTime()));
+                preparedSt.setDate(4, new Date(producto.getFecha_registro().getTime()));
             }
             preparedSt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }
@@ -77,8 +82,10 @@ public class ProductoRepositorio_Implementacion implements Repositorio<Producto>
     public void eliminar(Long id) {
         try (PreparedStatement preparedSt = getConnection().prepareStatement("DELETE FROM productos WHERE id=?")){
             preparedSt.setLong(1, id);
+            preparedSt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();        }
+            throw new RuntimeException(e);
+        }
     }
 
     private static Producto crearProducto(ResultSet resultSet) throws SQLException {
@@ -87,6 +94,10 @@ public class ProductoRepositorio_Implementacion implements Repositorio<Producto>
         producto.setNombre(resultSet.getString("nombre"));
         producto.setPrecio(resultSet.getInt("precio"));
         producto.setFecha_registro(resultSet.getDate("fecha_registro"));
+        Categoria categoria = new Categoria();
+        categoria.setId(resultSet.getLong("categoria_id"));
+        categoria.setNombre(resultSet.getString("categoria"));
+        producto.setCategoria(categoria);
         return producto;
     }
 }

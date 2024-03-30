@@ -6,32 +6,45 @@ import org.CCristian.Java.JDBC.Repositorio.ProductoRepositorio_Implementacion;
 import org.CCristian.Java.JDBC.Repositorio.Repositorio;
 import org.CCristian.Java.JDBC.Util.Conexion_BaseDeDatos_SINGLETON;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
-public class Ejemplo_JDBC {
+public class Ejemplo_JDBC_CRUD {
     public static void main(String[] args) {
 
         try (Connection connection = Conexion_BaseDeDatos_SINGLETON.getInstance())
         {
+            System.out.println("------------------------CRUD------------------------");
             Repositorio<Producto> repositorio = new ProductoRepositorio_Implementacion();
-            System.out.println("Listando");
+            System.out.println("\t\tBase de Datos");
             repositorio.listar().forEach(System.out::println);
 
-            System.out.println("\nBuscando por 'id'");
-            System.out.println(repositorio.buscarPorId(1L).toString());
-
-            System.out.println("\nInsertar nuevo producto");
             Producto producto = new Producto();
-            producto.setNombre("Teclado Razer mecánico");
-            producto.setPrecio(450);
+            producto.setNombre("productoCRUD");
+            producto.setPrecio(11001);
             producto.setFecha_registro(new Date());
             Categoria categoria = new Categoria();
-            categoria.setId(3L);
+            categoria.setId(2L);
             producto.setCategoria(categoria);
+            System.out.println("\n\t\t\tCreate");
             repositorio.guardar(producto);
-            System.out.println("Guardado");
             repositorio.listar().forEach(System.out::println);
+
+            System.out.println("\n\t\t\tRead");
+            repositorio.listar().forEach(System.out::println);
+
+            producto.setId(5L);
+            producto.setNombre("producto_CRUD");
+            producto.setPrecio(10011);
+            repositorio.guardar(producto);
+            System.out.println("\n\t\t\tUpdate");
+            repositorio.listar().forEach(System.out::println);
+
+            repositorio.eliminar(5L);
+            System.out.println("\n\t\t\tDelete");
+            repositorio.listar().forEach(System.out::println);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

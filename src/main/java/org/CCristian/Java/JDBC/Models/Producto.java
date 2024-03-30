@@ -8,6 +8,7 @@ public class Producto {
     private String nombre;
     private Integer precio;
     private Date fecha_registro;
+    private Categoria categoria;
 /*------------------GETTER-SETTER------------------*/
     public Long getId() {
         return id;
@@ -40,6 +41,14 @@ public class Producto {
     public void setFecha_registro(Date fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 /*------------------CONSTRUCTOR------------------*/
     public Producto(Long id, String nombre, Integer precio, Date fecha_registro) {
         this.id = id;
@@ -53,6 +62,10 @@ public class Producto {
 /*------------------MÉTODOS------------------*/
     @Override
     public String toString() {
-        return id +" | "+ nombre +" | "+ precio +" | "+ fecha_registro;
+        return id +" | "+
+                nombre+" | "+
+                precio+" | "+
+                fecha_registro+" | "+
+                categoria.getNombre();
     }
 }
